@@ -1,0 +1,31 @@
+<h1 class="text-center my-4">
+  Статьи
+</h1>
+
+<div class="container">
+
+  <%= link_to 'Новая статья', new_article_path %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Дата публикации</th>
+        <th>Авторы</th>
+        <th>DOI</th>
+        <th>Журнал</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @articles.each do |art| %>
+        <tr>
+          <td><%= link_to art.original_title, art %></td>
+          <td><%= art.publication_date %></td>
+          <td><%= art.authors.pluck(:full_name).join(', ') %></td>
+          <td><%= art.doi %></td>
+          <td><%= art.journal.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

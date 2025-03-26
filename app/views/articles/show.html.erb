@@ -1,0 +1,23 @@
+<h1 class="text-center my-4">
+  <%= @article.original_title %>
+</h1>
+
+<div class="card">
+  <div class="card-body">
+    <p><strong>Английское название:</strong> <%= @article.english_title %></p>
+    <p><strong>Дата публикации:</strong> <%= @article.publication_date %></p>
+    <p><strong>DOI:</strong> <%= @article.doi %></p>
+    <p><strong>Журнал:</strong> <%= @article.journal.name %></p>
+    
+    <h4>Авторы:</h4>
+    <ul>
+      <% @article.authors.each do |author| %>
+        <li><%= author.full_name %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to 'Удалить', article_path(@article), data: { turbo_method: :delete,  turbo_confirm: "Точно желаете удалить?" }, class: 'btn btn-secondary' %>
+    <%= link_to 'Редактировать', edit_article_path(@article), class: 'btn btn-secondary' %>
+    <%= link_to 'Назад', articles_path, class: 'btn btn-outline-secondary' %>
+  </div>
+</div>

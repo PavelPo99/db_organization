@@ -1,0 +1,49 @@
+<%= form_with model: @report, local: true, class: 'container' do |f| %>
+  <%#= render 'shared/errors', resource: book_chapter %>
+
+  <div class="mb-3">
+    <%= f.label :original_title, 'Название на языке оригинала', class: 'form-label' %>
+    <%= f.text_field :original_title, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :english_title, 'Название на английском', class: 'form-label' %>
+    <%= f.text_field :english_title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :publication_date, 'Дата публикации', class: 'form-label' %>
+    <%= f.date_field :publication_date, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= label_tag 'report[author_ids]', 'Авторы', class: 'form-label' %>
+    <%= select_tag 'report[author_ids]', 
+        options_from_collection_for_select(@authors, :id, :full_name, @report.authors.pluck(:id)),
+        multiple: true, 
+        class: 'form-select' %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :speaker_id %>
+    <%= f.collection_select :speaker_id, @authors, :id, :full_name %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :conference_name, 'Название конференции', class: 'form-label' %>
+    <%= f.text_field :conference_name, class: 'form-control', required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :conference_venue, 'Место проведения конференции', class: 'form-label' %>
+    <%= f.text_field :conference_venue, class: 'form-control', required: true %>
+  </div>
+
+
+
+
+
+  <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+<% end %>

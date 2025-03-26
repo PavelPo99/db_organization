@@ -1,0 +1,31 @@
+<h1 class="text-center my-4">
+  Главы книг
+</h1>
+
+<div class="container">
+
+  <%= link_to 'Новая глава книги', new_book_chapter_path %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Название</th>
+        <th>Дата публикации</th>
+        <th>Авторы</th>
+        <th>ISBN</th>
+        <th>Издатель</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @book_chapters.each do |bc| %>
+        <tr>
+          <td><%= link_to bc.original_title, bc %></td>
+          <td><%= bc.publication_date %></td>
+          <td><%= bc.authors.pluck(:full_name).join(', ') %></td>
+          <td><%= bc.isbn %></td>
+          <td><%= bc.publisher %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

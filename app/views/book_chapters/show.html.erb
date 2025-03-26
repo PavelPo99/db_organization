@@ -1,0 +1,24 @@
+<h1 class="text-center my-4">
+  <%= @book_chapter.original_title %>
+</h1>
+
+<div class="card">
+  <div class="card-body">
+    <p><strong>Английское название:</strong> <%= @book_chapter.english_title %></p>
+    <p><strong>Дата публикации:</strong> <%= @book_chapter.publication_date %></p>
+    <p><strong>Издатель:</strong> <%= @book_chapter.publisher %></p>
+    <p><strong>ISBN:</strong> <%= @book_chapter.isbn %></p>
+    <p><strong>Количество страниц:</strong> <%= @book_chapter.number_pages %></p>
+    
+    <h4>Авторы:</h4>
+    <ul>
+      <% @book_chapter.authors.each do |author| %>
+        <li><%= author.full_name %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to 'Удалить', book_chapter_path(@book_chapter), data: { turbo_method: :delete,  turbo_confirm: "Точно желаете удалить?" }, class: 'btn btn-secondary' %>
+    <%= link_to 'Редактировать', edit_book_chapter_path(@book_chapter), class: 'btn btn-secondary' %>
+    <%= link_to 'Назад', book_chapters_path, class: 'btn btn-outline-secondary' %>
+  </div>
+</div>

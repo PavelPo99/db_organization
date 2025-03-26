@@ -1,0 +1,24 @@
+<h1 class="text-center my-4">
+  <%= @report.original_title %>
+</h1>
+
+<div class="card">
+  <div class="card-body">
+    <p><strong>Английское название:</strong> <%= @report.english_title %></p>
+    <p><strong>Дата публикации:</strong> <%= @report.publication_date %></p>
+    <p><strong>Докладчик:</strong> <%= Author.find(@report.speaker_id).full_name %></p>
+    <p><strong>Название конференции:</strong> <%= @report.conference_name %></p>
+    <p><strong>Место проведения конференции:</strong> <%= @report.conference_venue %></p>
+    
+    <h4>Авторы:</h4>
+    <ul>
+      <% @report.authors.each do |author| %>
+        <li><%= author.full_name %></li>
+      <% end %>
+    </ul>
+
+    <%= link_to 'Удалить', report_path(@report), data: { turbo_method: :delete,  turbo_confirm: "Точно желаете удалить?" }, class: 'btn btn-secondary' %>
+    <%= link_to 'Редактировать', edit_report_path(@report), class: 'btn btn-secondary' %>
+    <%= link_to 'Назад', reports_path, class: 'btn btn-outline-secondary' %>
+  </div>
+</div>
