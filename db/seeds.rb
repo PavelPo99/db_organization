@@ -1,9 +1,15 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+Author.destroy_all
+Journal.destroy_all
+
+
+author = Author.create!([
+  { full_name: "Лазебников Альберт Радикович", orcid: '0001-0002-0003-0004' },
+  { full_name: "Никитаева Валентина Руслановна", orcid: '0006-0007-0008-0009' },
+  { full_name: "Лунегова Маргарита Яновна", orcid: '0010-0011-0012-0013' }
+])
+
+journal = Journal.create!([
+  { name: "Артифекс", issn: '1050-124X' },
+  { name: "МиндФьюжн", issn: '0317-8471' },
+  { name: "Синергия", issn: '1000-5466' }
+])

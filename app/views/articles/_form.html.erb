@@ -1,5 +1,4 @@
 <%= form_with model: @article, local: true, class: 'container' do |f| %>
-  <%#= render 'shared/errors', resource: book_chapter %>
 
   <div class="mb-3">
     <%= f.label :original_title, 'Название на языке оригинала', class: 'form-label' %>
@@ -17,16 +16,18 @@
   </div>
 
   <div class="mb-3">
-    <%= label_tag 'article[author_ids]', 'Авторы', class: 'form-label' %>
-    <%= select_tag 'article[author_ids]', 
-        options_from_collection_for_select(@authors, :id, :full_name, @article.authors.pluck(:id)),
-        multiple: true, 
-        class: 'form-select' %>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :doi, 'DOI', class: 'form-label' %>
-    <%= f.text_field :doi, class: 'form-control', required: true %>
+    <label class="form-label">Авторы</label>
+    <% @authors.each do |author| %>
+      <div class="form-check">
+        <%= check_box_tag 'article[author_ids][]', 
+                          author.id, 
+                          @article.author_ids.include?(author.id),
+                          class: 'form-check-input' %>
+        <label class="form-check-label">
+          <%= author.full_name %>
+        </label>
+      </div>
+    <% end %>
   </div>
 
   <div class="field">
@@ -34,7 +35,12 @@
     <%= f.collection_select :journal_id, @journals, :id, :name %>
   </div>
 
-
+  <div class="mb-3">
+    <%= f.label :doi, 'DOI', class: 'form-label' %>
+    <%= f.text_field :doi, class: 'form-control', required: true %>
+  </div>
 
   <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+
+  <%= link_to "Назад", articles_path, class: 'btn btn-outline-primary w-80' %>
 <% end %>

@@ -1,5 +1,5 @@
 class Journal < ApplicationRecord
-  has_many :articles
+  has_many :articles, dependent: :destroy
 
   validates :issn, uniqueness: true
 

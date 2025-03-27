@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "publications#index"
+  root "home#show"
 
   resources :articles
   resources :book_chapters

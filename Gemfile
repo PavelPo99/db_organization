@@ -13,7 +13,6 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 gem "bootsnap", require: false
 
-gem "jquery-rails"
 gem "bootstrap"
 gem "sassc-rails"
 gem "jsbundling-rails"

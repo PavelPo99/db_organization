@@ -1,5 +1,4 @@
 <%= form_with model: @book_chapter, local: true, class: 'container' do |f| %>
-  <%#= render 'shared/errors', resource: book_chapter %>
 
   <div class="mb-3">
     <%= f.label :original_title, 'Название на языке оригинала', class: 'form-label' %>
@@ -26,18 +25,27 @@
     <%= f.text_field :isbn, class: 'form-control', required: true %>
   </div>
 
+ <div class="mb-3">
+  <label class="form-label">Авторы</label>
+  <% @authors.each do |author| %>
+    <div class="form-check">
+      <%= check_box_tag 'book_chapter[author_ids][]', 
+                        author.id, 
+                        @book_chapter.author_ids.include?(author.id),
+                        class: 'form-check-input' %>
+      <label class="form-check-label">
+        <%= author.full_name %>
+      </label>
+    </div>
+  <% end %>
+</div>
+
   <div class="mb-3">
     <%= f.label :number_pages, 'Количество страниц', class: 'form-label' %>
     <%= f.number_field :number_pages, class: 'form-control', required: true, min: 1 %>
   </div>
 
-  <div class="mb-3">
-    <%= label_tag 'book_chapter[author_ids]', 'Авторы', class: 'form-label' %>
-    <%= select_tag 'book_chapter[author_ids]', 
-        options_from_collection_for_select(@authors, :id, :full_name, @book_chapter.authors.pluck(:id)),
-        multiple: true, 
-        class: 'form-select' %>
-  </div>
-
   <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+
+  <%= link_to "Назад", book_chapters_path, class: 'btn btn-outline-primary w-80' %>
 <% end %>
