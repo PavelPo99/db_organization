@@ -1,24 +1,35 @@
-# README
+# The organization's publication database
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Возможности
 
-* Ruby version
+- Типы публикаций:
+  - Статьи в журналах
+  - Главы книг 
+  - Доклады
+- CRUD для создания публикаций разных типов с указанным набором данных
 
-* System dependencies
 
-* Configuration
+## Стек
 
-* Database creation
+- Ruby on Rails 7
+- PostgreSQL
+- Bootstrap 5
 
-* Database initialization
+## Установить зависимости
+bundle install
 
-* How to run the test suite
+# Настройка базы данных (для PostgreSQL)
+```
+Подключить .env
+- USERNAME=your_username_db
+- PASSWORD=your_passwort_db
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+rails db:create
+rails db:migrate
+rails db:seed
+```
+# Запустить сервер
+```
+rails server
+```
